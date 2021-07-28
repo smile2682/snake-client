@@ -6,19 +6,35 @@ const connect = function () {
     port: 50542
   })
 
+
   // interpret incoming data as text
   conn.setEncoding("utf8");
 
-  
+  conn.on('connect',()=>{
+    console.log("Successfully connected to game server")
+  });
 
+  conn.on('connect', ()=>{
+    conn.write('Name: CYL');
+  });
+
+  // conn.on('connect',()=>{
+  //   conn.write("Move: up")
+  // });
+
+  // conn.on('connect',()=>{
+  //   conn.write("Move: left")
+  // });
+
+  conn.on('connect',()=>{
+    conn.write("Move: right")
+  });
   conn.on('data', (data) => {
     console.log('Server says: ', data);
   });
   
   
-  // conn.on('connect', () => {
-  //   conn.write('Hello from client!');
-  // });
+  
   
   return conn;
 };
